@@ -1,0 +1,65 @@
+@import 'materialize-css/dist/css/materialize.min.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffff;
+}
+
+span {
+  color: rgb(117, 142, 158);
+}
+
+.todo {
+  margin-bottom: 1.5rem;
+}
+
+.todo.status span {
+  text-decoration: line-through;
+}
+
+.todo label {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: #cecece;
+  padding: 1rem;
+}
+
+.todo i {
+  z-index: 2;
+}
+
+.title{
+    font-size: 30px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+p {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+}
+
+button {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e53935;
+}
+
+.stopwatch{
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  gap: 5px;
+}
