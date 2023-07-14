@@ -54,7 +54,7 @@ const Tasks = () => {
     return (
         <div className="container">
             <div className="title">
-                <h1>Note your tasks</h1>
+                <h1>Note your tasks😁</h1>
                 <div className="time">
                     <span>{currentTime}</span>
                 </div>

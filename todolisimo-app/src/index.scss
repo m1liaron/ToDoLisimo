@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .todo {
-  margin-bottom: 1.5rem;
+  width: 100%;
 }
 
 .todo.status span {
@@ -67,4 +67,38 @@ button:hover {
   align-items:center;
   justify-content: center;
   gap: 5px;
+}
+
+.flex{
+  display: flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom: 1.5rem;
+}
+
+.material-icons{
+  font-size: 25px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.hide{
+ opacity: 0;
+}
+
+.hoverCross{
+  animation: cross forwards 1s;
+}
+
+@keyframes cross{
+  from {
+    transform: translateX(0px);
+  }
+  to{
+    transform: translateX(30px);
+  }
+}
+
+.show{
+  opacity: 1;
 }
