@@ -1,0 +1,35 @@
+.todo {
+    width: 100%;
+}
+
+.todo.status span {
+    text-decoration: line-through;
+}
+
+.todo label {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background: #cecece;
+    padding: 1rem;
+}
+
+.todo i {
+    z-index: 2;
+}
+
+.hoverCross {
+    animation: cross forwards 1s;
+}
+
+@keyframes cross {
+    from {
+        transform: translateX(0px);
+    }
+
+    to {
+        transform: translateX(30px);
+    }
+}

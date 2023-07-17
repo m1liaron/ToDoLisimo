@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import StopWatch from './stopWatch/StopWatch';
+import StopWatch from '../stopWatch/StopWatch';
+import './Item.scss'
 
 export default function Item({ title, id, status, time }) {
   const [name, setName] = useState(title);

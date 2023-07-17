@@ -1,4 +1,4 @@
-import Item from "./item";
+import Item from "./item/Item";
 
 export default function List({ tasks }) {
     return (

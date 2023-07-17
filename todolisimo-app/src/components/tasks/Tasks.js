@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import List from '../list';
 import { v4 as uuidv4 } from 'uuid';
+import './Tasks.scss'
 
 const Tasks = () => {
     const [tasks, setTasks] = useState(() => {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
- 
+import './StopWatch.scss' 
+
 function StopWatch({ id, initialTime }) {
   const [time, setTime] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(false);
