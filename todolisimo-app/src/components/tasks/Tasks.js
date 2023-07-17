@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import List from '../list';
 import { v4 as uuidv4 } from 'uuid';
+import Clock from '../../assets/img/clock.png';
 import './Tasks.scss'
 
 const Tasks = () => {
@@ -68,7 +69,14 @@ const Tasks = () => {
                     onKeyDown={addTask}
                 />
             </div>
-            <List tasks={tasks}/>
+            
+            <div className='flex flex-level'>
+                <img src={Clock} alt="clock" />
+                <div className="time-check"></div>
+            </div>
+            <div className="container-tasks">
+                <List tasks={tasks}/>
+            </div>
         </div>
     );
 }

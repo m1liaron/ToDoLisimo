@@ -3,7 +3,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #ffff;
+  background: linear-gradient(289deg, #FFEA2D 18.75%, rgba(219, 255, 0, 0.00) 100%);
 }
 
 span {
@@ -28,8 +28,8 @@ p {
 }
 
 button {
-  background-color: #f44336;
-  color: #fff;
+  border-radius: 5px;
+  background: #FAFF00;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
@@ -37,13 +37,13 @@ button {
 }
 
 button:hover {
-  background-color: #e53935;
+  background: #b5b801;
+  color:#fff;
 }
 .flex{
   display: flex;
   align-items:center;
   gap:10px;
-  margin-bottom: 1.5rem;
 }
 
 .material-icons{

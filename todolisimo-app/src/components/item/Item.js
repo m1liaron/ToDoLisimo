@@ -6,6 +6,7 @@ export default function Item({ title, id, status, time }) {
   const [name, setName] = useState(title);
   const [checked, setChecked] = useState(status);
   const [isHovered, setIsHovered] = useState(false);
+  const [visible, setVisible] = useState(true);
   const classes = ["todo"];
 
   if (checked) {
@@ -14,6 +15,7 @@ export default function Item({ title, id, status, time }) {
 
   const updateStatus = () => {
     setChecked(!checked);
+    setIsHovered(!isHovered);
     const storedTodos = JSON.parse(localStorage.getItem("tasks"));
     storedTodos.forEach((el) => {
       if (el.id === id) {
@@ -24,8 +26,6 @@ export default function Item({ title, id, status, time }) {
     });
     localStorage.setItem("tasks", JSON.stringify(storedTodos));
   };
-
-  const [visible, setVisible] = useState(true);
 
   const removeElement = () => {
     setVisible((prev) => !prev);
@@ -56,26 +56,24 @@ export default function Item({ title, id, status, time }) {
   return (
     <>
       {visible && (
-        <div
-          className={`flex ${isHovered ? 'hovered' : ''}`}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+        <div>
           <li className={classes.join(" ")}>
             <label>
               <div>
                 <input type="checkbox" checked={checked} onChange={updateStatus} />
-                <input value={name} onChange={handleNameChange}/>
+                <span>{title}</span>
               </div>
-              <StopWatch id={id} initialTime={time} />
-            </label>
-          </li>
-          <i
-            className={'material-icons red-text '}
+              <div className='flex'>
+                 <StopWatch id={id} initialTime={time} />
+            <i
+            className={`material-icons red-text ${isHovered ? 'visible' : 'hide'}`}
             onClick={removeElement}
-          >
+            >
             X
           </i>
+             </div>
+            </label>
+          </li>
         </div>
       )}
     </>
