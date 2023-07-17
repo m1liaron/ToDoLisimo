@@ -4,3 +4,18 @@
     justify-content: center;
     gap: 5px;
 }
+
+.stopWatchAnimation {
+    transition: 0.5s;
+    animation: stopWatch forwards 1s;
+}
+
+@keyframes stopWatch {
+    from {
+        transform: translateX(0px);
+    }
+
+    to {
+        transform: translateX(-10px);
+    }
+}

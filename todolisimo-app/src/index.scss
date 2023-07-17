@@ -1,9 +1,14 @@
 @import 'materialize-css/dist/css/materialize.min.css';
+@import url('https://fonts.cdnfonts.com/css/itim');
 
 body {
   margin: 0;
   padding: 0;
   background: linear-gradient(289deg, #FFEA2D 18.75%, rgba(219, 255, 0, 0.00) 100%);
+  font-family: Itim;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 span {
@@ -58,4 +63,10 @@ button:hover {
 
 .show{
   opacity: 1;
+}
+
+.title{
+  font-size: 4.25rem;
+  text-align: center;
+  margin: 0 auto;
 }

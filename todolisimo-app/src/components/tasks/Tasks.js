@@ -70,10 +70,11 @@ const Tasks = () => {
                 />
             </div>
             
-            <div className='flex flex-level'>
+            {/* <div className='flex flex-level'>
                 <img src={Clock} alt="clock" />
                 <div className="time-check"></div>
-            </div>
+            </div> */}
+            <h1 className='title'>React</h1>
             <div className="container-tasks">
                 <List tasks={tasks}/>
             </div>

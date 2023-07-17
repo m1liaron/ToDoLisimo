@@ -29,10 +29,14 @@
 
 @keyframes cross {
     from {
-        transform: translateX(0px);
+        opacity: 0.4;
     }
 
     to {
-        transform: translateX(30px);
+        opacity: 1;
     }
+}
+
+.fa-pen:hover{
+    color:#000000;
 }

@@ -4,7 +4,7 @@ import Tasks from "./components/tasks/Tasks";
 function Main() {
     return (
         <div>
-            {/* <Header/> */}
+            <Header/>
             <Tasks/>
         </div>
     );

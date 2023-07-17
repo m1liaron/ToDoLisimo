@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './StopWatch.scss' 
 
-function StopWatch({ id, initialTime }) {
+function StopWatch({ id, initialTime, isHovered }) {
   const [time, setTime] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(false);
   const [btn, setBtn] = useState("Start");
@@ -69,7 +69,7 @@ function StopWatch({ id, initialTime }) {
   };
 
   return (
-    <div className="stopwatch">
+    <div className={`stopwatch ${isHovered ? 'stopWatchAnimation' : ''}`}>
       <p>{formatTime(time)}</p>
       <button onClick={btn === "Start" ? handleStart : handleStop}>{btn}</button>
     </div>

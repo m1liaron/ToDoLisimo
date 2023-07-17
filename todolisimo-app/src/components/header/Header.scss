@@ -1,8 +1,10 @@
 header {
     width: 100%;
-    background-color: #bebee7;
+    background: linear-gradient(90deg, #9CF65B 0%, #FAEA5C 21.35%, #ECEC5C 45.31%, #E3EE5C 69.27%, #D8F05C 71.35%, #BBF55C 100%);
     h1{
         padding: 10px;
         color:#fff;
+        margin-left: auto;
+        display: table;
     }
 }
