@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import StopWatch from '../stopWatch/StopWatch';
 import './Item.scss';
 
-export default function Item({ title, id, status, time }) {
+export default function Item({ title, id, status, time, removeTaks }) {
   const [name, setName] = useState(title);
   const [checked, setChecked] = useState(status);
   const [isHovered, setIsHovered] = useState(false);
@@ -41,7 +41,7 @@ export default function Item({ title, id, status, time }) {
   const removeElement = () => {
     setVisible(false);
     const storedTodos = JSON.parse(localStorage.getItem('tasks'));
-
+    localStorage.removeItem(`tasks_${id}`);
     let removeTodos = storedTodos.filter((item) => item.id !== id);
     localStorage.setItem('tasks', JSON.stringify(removeTodos));
   };
