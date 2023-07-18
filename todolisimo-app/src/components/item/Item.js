@@ -49,7 +49,6 @@ export default function Item({ title, id, status, time }) {
   return (
     <>
       {visible && (
-        <div>
           <li className={classes.join(' ')}>
             <label>
               <div>
@@ -71,7 +70,6 @@ export default function Item({ title, id, status, time }) {
               <input type='text' value={name} onChange={handleNameChange} />
             )}
           </li>
-        </div>
       )}
     </>
   );

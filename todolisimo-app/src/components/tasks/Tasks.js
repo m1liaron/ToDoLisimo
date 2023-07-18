@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import List from '../list';
+import List from '../list/List'
 import { v4 as uuidv4 } from 'uuid';
-import Clock from '../../assets/img/clock.png';
 import './Tasks.scss'
 
 const Tasks = () => {
@@ -13,29 +12,12 @@ const Tasks = () => {
             return JSON.parse(storedTodos);
         }
     });
+    const [title, setTitle] = useState('');
     const [tasksTitle, setTasksTitle] = useState('');
-    const [currentTime, setCurrentTime] = useState('');
 
     useEffect(() => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks]);
-
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            const data = new Date();
-            const monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-            const month = monthName[data.getMonth()];
-            const day = data.getDate();
-            const year = data.getFullYear();
-            const hour = data.getHours();
-            const minutes = data.getMinutes();
-            setCurrentTime(`${month} ${day}, ${year}, ${hour}:${minutes < 10 ? '0' + minutes : minutes}`);
-        },[]);
-
-        return () => {
-            clearInterval(intervalId);
-        };
-    }, []);
 
     const addTask = (e) => {
         const storedTodos = JSON.parse(localStorage.getItem('tasks'));
@@ -44,40 +26,38 @@ const Tasks = () => {
                 ...storedTodos,
                 {
                     id: uuidv4(),
+                    name: title,
                     title: tasksTitle,
                     status: false,
                     time: 0
                 },
             ]);
             setTasksTitle('');
+            setTitle('');
         }
     };
 
     return (
         <div className="container">
-            <div className="title">
-                <h1>Note your tasks😁</h1>
-                <div className="time">
-                    <span>{currentTime}</span>
-                </div>
-            </div>
             <div className="input-field">
                 <input
                     type="text"
+                    placeholder='Title'
+                    value={title}
+                    onChange={(event) => setTitle(event.target.value)}
+                    onKeyDown={addTask}/>
+                <input
+                    type="text"
+                    placeholder='Name of task'
                     value={tasksTitle}
                     onChange={(event) => setTasksTitle(event.target.value)}
                     onKeyDown={addTask}
                 />
             </div>
-            
-            {/* <div className='flex flex-level'>
-                <img src={Clock} alt="clock" />
-                <div className="time-check"></div>
-            </div> */}
-            <h1 className='title'>React</h1>
-            <div className="container-tasks">
-                <List tasks={tasks}/>
-            </div>
+
+                <ul className='list-of-cardsTasks'>
+                    <List tasks={tasks}/>
+                </ul>
         </div>
     );
 }
