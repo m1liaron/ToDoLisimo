@@ -41,7 +41,6 @@
 }
 
 .card {
-    width: 66.6875rem;
     height: auto;
     border-radius: 0.625rem;
     margin: 0 auto;
@@ -63,9 +62,13 @@
 
 .time{
     &-current{
-        left: 100px;
+        left: 5rem;
     }
     &-last{
-        left: 900px;
+        left: 61rem;
     }
+}
+
+.cross{
+    margin-left: auto;
 }

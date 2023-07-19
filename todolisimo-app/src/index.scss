@@ -41,10 +41,6 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background: #b5b801;
-  color:#fff;
-}
 .flex{
   display: flex;
   align-items:center;
@@ -69,4 +65,8 @@ button:hover {
   font-size: 4.25rem;
   text-align: center;
   margin: 0 auto;
+}
+
+.active-btn{
+  background:#2ab7a9;
 }

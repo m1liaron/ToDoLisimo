@@ -37,14 +37,14 @@ const Tasks = () => {
             <div className="input-field">
                 <input
                     type="text"
-                    placeholder='Title'
+                    placeholder='Назва розділу'
                     value={title}
                     onChange={(event) => setTitle(event.target.value)}
                     onKeyDown={addTask}/>
             </div>
 
                 <ul className='list-of-cardsTasks'>
-                    <List cards={cards} key={cards.id} />
+                    <List cards={cards} key={cards.id} setCards={setCards} />
                 </ul>
         </div>
     );

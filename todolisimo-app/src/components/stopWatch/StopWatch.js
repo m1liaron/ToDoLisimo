@@ -69,7 +69,7 @@ function StopWatch({ id, initialTime, isHovered }) {
   return (
     <div className={`stopwatch ${isHovered ? 'stopWatchAnimation' : ''}`}>
       <p>{formatTime(time)}</p>
-      <button onClick={btn === 'Start' ? handleStart : handleStop}>{btn}</button>
+      <button onClick={btn === 'Start' ? handleStart : handleStop} className={isRunning ? 'active-btn' : ''}>{btn}</button>
     </div>
   );
 }
