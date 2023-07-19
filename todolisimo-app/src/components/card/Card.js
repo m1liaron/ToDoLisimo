@@ -4,9 +4,9 @@ import Clock from '../../assets/img/clock.png';
 import { v4 as uuidv4 } from 'uuid';
 import './Card.scss';
 
-const Card = ({ id, name, setCards }) => {
+const Card = ({ id, name}) => {
     const [tasks, setTasks] = useState(() => {
-    const storedTodos = localStorage.getItem('tasks');
+    const storedTodos = localStorage.getItem(`tasks_${id}`);
         if (!storedTodos) {
             return [];
         } else {
@@ -22,16 +22,15 @@ const Card = ({ id, name, setCards }) => {
     const [lostTime, setLostTime] = useState(0);
     const [tasksTitle, setTasksTitle] = useState('');
     const [visible, setVisible] = useState(true);
-    const [hover, setHover] = useState(false);
 
     useEffect(() => {
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem(`tasks_${id}`, JSON.stringify(tasks));
 
         localStorage.setItem(`goal_${id}`, goal.toString());
     }, [tasks, goal, id]);
 
     const addTask = (e) => {
-        const storedTodos = JSON.parse(localStorage.getItem('tasks'));
+        const storedTodos = JSON.parse(localStorage.getItem(`tasks_${id}`));
         if (e.key === 'Enter' && e.target.value !== '') {
             setTasks([
                 ...storedTodos,
@@ -58,7 +57,29 @@ const Card = ({ id, name, setCards }) => {
 
         let removeTodos = storedTodos.filter((card) => card.id !== id);
         localStorage.setItem('cards', JSON.stringify(removeTodos));
+        localStorage.removeItem(`goal_${id}`);
     };
+
+    useEffect(() => {
+        const storedTodos = JSON.parse(localStorage.getItem(`tasks_${id}`)),
+        totalTime = storedTodos.reduce((acc, el) => acc + el.time, 0),
+        time = Math.floor(totalTime / 100),
+
+        hours = Math.floor(time / 3600),
+        minutes = Math.floor((time % 3600) / 60),
+        seconds = time % 60,
+
+        formattedHours = hours.toString().padStart(2, '0'),
+        formattedMinutes = minutes.toString().padStart(2, '0'),
+        formattedSeconds = seconds.toString().padStart(2, '0'),
+
+        timeInHours = hours + minutes / 60 + seconds / 3600,
+        lostTime = goal - timeInHours;
+
+        setPerLevel(time / 10);
+        setCurrentTime(`${formattedHours}:${formattedMinutes}:${formattedSeconds}`);
+        setLostTime(lostTime.toFixed());
+    });
     
     return (
         <>
@@ -90,19 +111,19 @@ const Card = ({ id, name, setCards }) => {
                         onChange={(event) => setGoal(event.target.value)}
                         onKeyDown={addGoal}
                         />
-                    <p className='title'>Ціль:{goal} годин</p>
-                        <input
-                            className='title'
-                            type="text"
-                            placeholder='Назва завдання'
-                            value={tasksTitle}
-                            onChange={(event) => setTasksTitle(event.target.value)}
-                            onKeyDown={addTask}
-                        />
+                    <p className='title' style={{fontSize : '30px'}}>Ціль:{goal} годин</p>
+                    <input
+                        className='title'
+                        type="text"
+                        placeholder='Назва завдання'
+                        value={tasksTitle}
+                        onChange={(event) => setTasksTitle(event.target.value)}
+                        onKeyDown={addTask}
+                    />
                 {tasks.map(item => {
                 return (
                     <li>
-                        <Item key={item.id} {...item} setLevel={setPerLevel} goal={goal} setCurrentTime={setCurrentTime} setLostTime={setLostTime} />
+                        <Item key={item.id} {...item} />
                     </li>
                 )
             })}

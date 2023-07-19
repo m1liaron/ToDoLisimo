@@ -33,15 +33,20 @@ function StopWatch({ id, initialTime, isHovered }) {
     };
   }, [isRunning, id]);
 
-  const setTimeInLocalStorage = (newTime) => {
-    const storedTodos = JSON.parse(localStorage.getItem('tasks'));
-    storedTodos.forEach((el) => {
-      if (el.id === id) {
-        el.time = newTime;
-      }
-    });
-    localStorage.setItem('tasks', JSON.stringify(storedTodos));
-  };
+const setTimeInLocalStorage = (newTime) => {
+  const storedTodos = JSON.parse(localStorage.getItem(`tasks_${id}`)) || [];
+
+  const updatedTodos = storedTodos.map((el) => {
+    if (el.id === id) {
+      return { ...el, time: newTime };
+    }
+    console.log(el.time)
+    return el;
+  });
+
+  localStorage.setItem(`tasks_${id}`, JSON.stringify(updatedTodos));
+};
+
 
   useEffect(() => {
     setTimeInLocalStorage(time);
@@ -69,7 +74,7 @@ function StopWatch({ id, initialTime, isHovered }) {
   return (
     <div className={`stopwatch ${isHovered ? 'stopWatchAnimation' : ''}`}>
       <p>{formatTime(time)}</p>
-      <button onClick={btn === 'Start' ? handleStart : handleStop} className={isRunning ? 'active-btn' : ''}>{btn}</button>
+      <button onClick={btn === 'Start' ? handleStart : handleStop} className={isRunning ? 'active-btn btn' : 'btn'}>{btn}</button>
     </div>
   );
 }

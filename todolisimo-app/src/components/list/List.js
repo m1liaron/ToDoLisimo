@@ -7,7 +7,7 @@ export default function List({ cards, setCards }) {
         <ul className="container-tasks">
             {cards.map(item => {
                 return (
-                    <Card id={item.id} name={item.name} key={item.id} setCards={setCards} />
+                    <Card key={item.id} id={item.id} name={item.name} setCards={setCards} />
                 )
             })}
         </ul>
