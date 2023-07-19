@@ -44,7 +44,7 @@ const Tasks = () => {
             </div>
 
                 <ul className='list-of-cardsTasks'>
-                    <List cards={cards} />
+                    <List cards={cards} key={cards.id} />
                 </ul>
         </div>
     );

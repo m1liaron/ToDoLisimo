@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import './StopWatch.scss' 
+import './StopWatch.scss';
 
 function StopWatch({ id, initialTime, isHovered }) {
   const [time, setTime] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(false);
-  const [btn, setBtn] = useState("Start");
+  const [btn, setBtn] = useState('Start');
 
   useEffect(() => {
     const storedTime = localStorage.getItem(`stopwatchTime_${id}`);
     if (storedTime) {
       setTime(parseInt(storedTime));
       setIsRunning(false);
-      setBtn("Start");
+      setBtn('Start');
     }
   }, [id]);
 
@@ -34,13 +34,13 @@ function StopWatch({ id, initialTime, isHovered }) {
   }, [isRunning, id]);
 
   const setTimeInLocalStorage = (newTime) => {
-    const storedTodos = JSON.parse(localStorage.getItem("tasks"));
+    const storedTodos = JSON.parse(localStorage.getItem('tasks'));
     storedTodos.forEach((el) => {
       if (el.id === id) {
         el.time = newTime;
       }
     });
-    localStorage.setItem("tasks", JSON.stringify(storedTodos));
+    localStorage.setItem('tasks', JSON.stringify(storedTodos));
   };
 
   useEffect(() => {
@@ -49,29 +49,27 @@ function StopWatch({ id, initialTime, isHovered }) {
 
   const handleStart = () => {
     setIsRunning(true);
-    setBtn("Stop");
+    setBtn('Stop');
     setTime((prevTime) => prevTime);
   };
 
   const handleStop = () => {
     setIsRunning(false);
-    setBtn("Start");
+    setBtn('Start');
   };
 
   const formatTime = (timeInMilliseconds) => {
-    const milliseconds = timeInMilliseconds % 100;
-    const seconds = Math.floor((timeInMilliseconds / 100) % 60);
-    const minutes = Math.floor(timeInMilliseconds / 6000);
+    const hours = Math.floor(timeInMilliseconds / 360000);
+    const minutes = Math.floor((timeInMilliseconds % 360000) / 6000);
+    const seconds = Math.floor((timeInMilliseconds % 6000) / 100);
 
-    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}:${String(
-      milliseconds
-    ).padStart(2, "0")}`;
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   };
 
   return (
     <div className={`stopwatch ${isHovered ? 'stopWatchAnimation' : ''}`}>
       <p>{formatTime(time)}</p>
-      <button onClick={btn === "Start" ? handleStart : handleStop}>{btn}</button>
+      <button onClick={btn === 'Start' ? handleStart : handleStop}>{btn}</button>
     </div>
   );
 }

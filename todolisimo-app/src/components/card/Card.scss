@@ -20,13 +20,12 @@
     margin-bottom: 10px;
     position: relative;
 
-    &::after {
+    .time-check_after {
         content: "";
         position: absolute;
         top: 50%;
         left: 0;
         transform: translateY(-50%);
-        width: 10%;
         height: 100%;
         background: #FFEA2D;
         border-radius: 1.25rem;
@@ -49,8 +48,24 @@
     margin-bottom: 20px;
     background: #fff;
     margin-bottom: 10rem;
+    padding: 20px;
 }
 
 .plus {
     cursor: pointer;
 }   
+
+.name{
+    position: absolute;
+    top: 10px;
+    z-index: 5;
+}
+
+.time{
+    &-current{
+        left: 100px;
+    }
+    &-last{
+        left: 900px;
+    }
+}
