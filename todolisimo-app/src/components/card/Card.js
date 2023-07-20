@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import Item from '../item/Item'
 import Clock from '../../assets/img/clock.png';
 import { v4 as uuidv4 } from 'uuid';
+import { CSSTransition, TransitionGroup} from 'react-transition-group';
 import './Card.scss';
 
 const Card = ({ id, name}) => {
@@ -82,54 +83,56 @@ const Card = ({ id, name}) => {
     });
     
     return (
-        <>
-        {visible && (
-            <li className='card'>
-                    <i
-                    className='material-icons red-text cross'
-                    onClick={() => removeCard(id)}
-                    >
-                    X
-                    </i>
-                    <p className='title' style={{marginBottom: '10px'}}>{name}</p>
+        <TransitionGroup component={null}>
+            {visible && (
+                    <CSSTransition in={visible} timeout={300} classNames="card">
+                        <li className='card'>
+                        <i
+                        className='material-icons red-text cross'
+                        onClick={() => removeCard(id)}
+                        >
+                        X
+                        </i>
+                        <p className='title' style={{marginBottom: '10px'}}>{name}</p>
 
-                    <div className='flex flex-level'>
-                        <img src={Clock} alt="clock" />
-                        <div className="time-check">
-                            <p className='time-current name'>{currentTime}</p>
-                            <p className='time-last name'>{lostTime}</p>
-                            <div className="time-check_after" style={{width : `${perLevel}%`}}></div>
+                        <div className='flex flex-level'>
+                            <img src={Clock} alt="clock" />
+                            <div className="time-check">
+                                <p className='time-current name'>{currentTime}</p>
+                                <p className='time-last name'>{lostTime}</p>
+                                <div className="time-check_after" style={{width : `${perLevel}%`}}></div>
+                            </div>
                         </div>
-                    </div>
-                    <input
-                        className='title'
-                        type="number"
-                        min={1}
-                        max={1000}
-                        placeholder='Змінити ціль'
-                        value={goal}
-                        onChange={(event) => setGoal(event.target.value)}
-                        onKeyDown={addGoal}
+                        <input
+                            className='title'
+                            type="number"
+                            min={1}
+                            max={1000}
+                            placeholder='Змінити ціль'
+                            value={goal}
+                            onChange={(event) => setGoal(event.target.value)}
+                            onKeyDown={addGoal}
+                            />
+                        <p className='title' style={{fontSize : '30px'}}>Ціль:{goal} годин</p>
+                        <input
+                            className='title'
+                            type="text"
+                            placeholder='Назва завдання'
+                            value={tasksTitle}
+                            onChange={(event) => setTasksTitle(event.target.value)}
+                            onKeyDown={addTask}
                         />
-                    <p className='title' style={{fontSize : '30px'}}>Ціль:{goal} годин</p>
-                    <input
-                        className='title'
-                        type="text"
-                        placeholder='Назва завдання'
-                        value={tasksTitle}
-                        onChange={(event) => setTasksTitle(event.target.value)}
-                        onKeyDown={addTask}
-                    />
-                {tasks.map(item => {
-                return (
-                    <li>
-                        <Item key={item.id} {...item} />
-                    </li>
-                )
-            })}
-            </li>
-        )}
-        </>
+                    {tasks.map(item => {
+                    return (
+                        <li>
+                            <Item key={item.id} {...item} />
+                        </li>
+                    )
+                })}
+                </li>
+                    </CSSTransition>
+            )}
+        </TransitionGroup>
     )
 }
 
